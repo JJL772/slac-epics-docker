@@ -1,0 +1,13 @@
+FROM slac-epics-rocky9:latest
+
+# Motif/X11 packages needed for the client tools, giflib for EDM
+RUN dnf install -y --enablerepo=crb libXtst-devel motif-devel libXmu-devel libXp-devel giflib-devel
+
+COPY ./patches /build/patches
+
+COPY ./scripts/edm.sh /build/edm.sh
+
+RUN env
+RUN /build/edm.sh -v R1.12.105B-1.3.0
+
+ENV PATH="${PATH}:/epics/extensions/edm/R1.12.105B-1.3.0/bin/linux-x86_64"

@@ -1,0 +1,25 @@
+FROM rockylinux:9
+
+RUN dnf install -y make git python3 gcc g++ perl-FindBin perl-File-Copy readline-devel ncurses-devel \
+    perl-ExtUtils-Install perl-ExtUtils-Command m4 autoconf automake rpcgen openssl-devel cmake bash wget patch
+
+RUN dnf install --enablerepo=crb -y libtirpc-devel glibc-static libstdc++-static
+
+ARG VERSION=R7.0.8.1
+ENV BASE_MODULE_VERSION=${VERSION}
+
+ENV EPICS_HOST_ARCH=linux-x86_64
+ENV EPICS_SITE_TOP=/epics
+ENV EPICS_BASE=${EPICS_SITE_TOP}/base/${BASE_MODULE_VERSION}
+ENV EPICS_EXTENSIONS=${EPICS_SITE_TOP}/extensions
+ENV EPICS_MODULES=${EPICS_SITE_TOP}/modules
+ENV PACKAGE_TOP=/epics/package
+ENV EPICS_PACKAGE_TOP=${PACKAGE_TOP}
+
+RUN mkdir -p ${EPICS_BASE}; mkdir -p ${EPICS_MODULES}; mkdir -p ${EPICS_EXTENSIONS}; mkdir -p ${EPICS_PACKAGE_TOP}
+
+COPY ./scripts/base.sh /build/base.sh
+RUN /build/base.sh -v ${BASE_MODULE_VERSION}
+
+COPY ./scripts/extensions.sh /build/extensions.sh
+RUN /build/extensions.sh

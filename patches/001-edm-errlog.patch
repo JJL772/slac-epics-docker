@@ -1,0 +1,12 @@
+diff --git a/calcPv/calcPerform.c b/calcPv/calcPerform.c
+index b47c574..4732b75 100644
+--- a/calcPv/calcPerform.c
++++ b/calcPv/calcPerform.c
+@@ -21,6 +21,7 @@
+ 
+ #include "postfix.h"
+ #include "postfixPvt.h"
++#include "errlog.h"
+ 
+ #ifdef SOLARIS
+ #include <ieeefp.h>

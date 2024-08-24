@@ -1,0 +1,46 @@
+diff --git a/giflib/gif.cc b/giflib/gif.cc
+index 5f8b9aa..0edd20d 100644
+--- a/giflib/gif.cc
++++ b/giflib/gif.cc
+@@ -16,13 +16,13 @@
+ //  along with this program; if not, write to the Free Software
+ //  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ 
+-#if GIFLIB_MAJOR > 5 || GIFLIB_MAJOR == 5 && GIFLIB_MINOR >= 1
++//#if GIFLIB_MAJOR > 5 || GIFLIB_MAJOR == 5 && GIFLIB_MINOR >= 1
+   #define GIF_CLOSE_FILE(gif) DGifCloseFile(gif, NULL)
+   #define GIF_OPEN_FILE(gif) DGifOpenFileName(gif, NULL)
+-#else
+-  #define GIF_CLOSE_FILE(gif) DGifCloseFile(gif)
+-  #define GIF_OPEN_FILE(gif) DGifOpenFileName(gif)
+-#endif
++//#else
++//  #define GIF_CLOSE_FILE(gif) DGifCloseFile(gif)
++//  #define GIF_OPEN_FILE(gif) DGifOpenFileName(gif)
++//#endif
+ 
+ void printErrMsg (
+   const char *fileName,
+diff --git a/imagelib/gif.cc b/imagelib/gif.cc
+index 5f8b9aa..0edd20d 100644
+--- a/imagelib/gif.cc
++++ b/imagelib/gif.cc
+@@ -16,13 +16,13 @@
+ //  along with this program; if not, write to the Free Software
+ //  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ 
+-#if GIFLIB_MAJOR > 5 || GIFLIB_MAJOR == 5 && GIFLIB_MINOR >= 1
++//#if GIFLIB_MAJOR > 5 || GIFLIB_MAJOR == 5 && GIFLIB_MINOR >= 1
+   #define GIF_CLOSE_FILE(gif) DGifCloseFile(gif, NULL)
+   #define GIF_OPEN_FILE(gif) DGifOpenFileName(gif, NULL)
+-#else
+-  #define GIF_CLOSE_FILE(gif) DGifCloseFile(gif)
+-  #define GIF_OPEN_FILE(gif) DGifOpenFileName(gif)
+-#endif
++//#else
++//  #define GIF_CLOSE_FILE(gif) DGifCloseFile(gif)
++//  #define GIF_OPEN_FILE(gif) DGifOpenFileName(gif)
++//#endif
+ 
+ void printErrMsg (
+   const char *fileName,
