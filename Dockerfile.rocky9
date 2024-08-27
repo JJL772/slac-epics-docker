@@ -16,6 +16,9 @@ ENV EPICS_MODULES=${EPICS_SITE_TOP}/modules
 ENV PACKAGE_TOP=/epics/package
 ENV EPICS_PACKAGE_TOP=${PACKAGE_TOP}
 
+# Add EPICS_BASE bin dir to path (so we can actually use caget/pvget)
+ENV PATH="${PATH}:${EPICS_BASE}/bin/${EPCIS_HOST_ARCH}"
+
 RUN mkdir -p ${EPICS_BASE}; mkdir -p ${EPICS_MODULES}; mkdir -p ${EPICS_EXTENSIONS}; mkdir -p ${EPICS_PACKAGE_TOP}
 
 COPY ./scripts/base.sh /build/base.sh

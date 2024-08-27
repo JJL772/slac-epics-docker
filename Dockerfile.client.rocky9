@@ -10,4 +10,13 @@ COPY ./scripts/edm.sh /build/edm.sh
 RUN env
 RUN /build/edm.sh -v R1.12.105B-1.3.0
 
-ENV PATH="${PATH}:/epics/extensions/edm/R1.12.105B-1.3.0/bin/linux-x86_64"
+ENV EDMBASE="/epics/extensions/edm/R1.12.105B-1.3.0"
+ENV PATH="${PATH}:${EDMBASE}/bin/${EPICS_HOST_ARCH}"
+ENV EDMFILES="${EDMBASE}/setup"
+ENV EDMOBJECTS="${EDMBASE}/setup"
+ENV EDMPVOBJECTS="${EDMBASE}/setup"
+ENV EDMLIBS="${EDMBASE}/lib/${EPICS_HOST_ARCH}"
+ENV HOST_ARCH="${EPICS_HOST_ARCH}"
+
+# Run the setup script to register the components
+RUN cd "${EDMBASE}/setup" && bash "${EDMBASE}/setup/setup.sh"
